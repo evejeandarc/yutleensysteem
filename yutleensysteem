@@ -1,0 +1,36 @@
+import datetime
+
+boeken = {
+    1: {"titel": "De Grijze Jager", "status": "beschikbaar", "gereserveerd": False},
+    2: {"titel": "Harry Potter", "status": "uitgeleend", "gereserveerd": True}
+}
+
+def leen_boek(studentnummer, boek_id):
+    vandaag = datetime.date.today()
+    boek = boeken.get(boek_id)
+
+    if boek:
+        if boek["status"] == "beschikbaar" and not boek["gereserveerd"]:
+            boek["status"] = "uitgeleend"
+            print(f"{boek['titel']} is uitgeleend aan student {studentnummer} op {vandaag}.")
+        elif boek["gereserveerd"]:
+            print(f"{boek['titel']} is gereserveerd en kan nu niet uitgeleend worden.")
+        else:
+            print(f"{boek['titel']} is al uitgeleend.")
+    else:
+        print("Boek niet gevonden.")
+
+leen_boek("123456", 1) 
+leen_boek("987654", 2)  
+leen_boek("333444", 9)  
+
+
+
+
+
+
+
+
+
+
+
